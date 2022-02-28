@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Laser : MonoBehaviour
 {
 
@@ -10,6 +11,7 @@ public class Laser : MonoBehaviour
     public Transform Firepoint;
     public GameObject StartVFX;
     public GameObject EndVFX;
+    public GameObject Particles2;
 
     private Quaternion rotation;
     private List<ParticleSystem> particles = new List<ParticleSystem>();
@@ -19,6 +21,7 @@ public class Laser : MonoBehaviour
     {
         FillLists();
         DisableLaser();
+        Particles2.SetActive(false);
     }
 
     // Update is called once per frame
@@ -58,13 +61,20 @@ public class Laser : MonoBehaviour
 
         LineRenderer.SetPosition(1, mousePos);
 
+
         Vector2 direction = mousePos - (Vector2)transform.position;
         RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position, direction.normalized, direction.magnitude);
 
         if (hit)
         {
             LineRenderer.SetPosition(1, hit.point);
+            Particles2.SetActive(true);
         }
+        else
+        {
+            Particles2.SetActive(false);
+        }
+
 
         StartVFX.transform.position = (Vector2)Firepoint.position;
         EndVFX.transform.position = LineRenderer.GetPosition(1);
@@ -75,6 +85,7 @@ public class Laser : MonoBehaviour
         LineRenderer.enabled = false;
         for (int i = 0; i < particles.Count; i++)
             particles[i].Stop();
+
     }
     
     void RotateToMouse()
