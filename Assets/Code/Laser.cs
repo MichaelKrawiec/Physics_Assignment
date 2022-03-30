@@ -92,7 +92,7 @@ public class Laser : MonoBehaviour
     {
         Vector2 direction = cam.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        rotation.eulerAngles = new Vector3(0, 0, angle);
+        rotation.eulerAngles = new Vector3(0, 0, angle -90);
         transform.rotation = rotation;
     }
 
