@@ -151,6 +151,7 @@ public static class SpriteExploder {
         //Create and Add Rigidbody
         Rigidbody2D rigidbody = piece.AddComponent<Rigidbody2D>();
         rigidbody.velocity = origVelocity;
+        rigidbody.gravityScale = 0;
 
         
 
@@ -289,6 +290,7 @@ public static class SpriteExploder {
         //Create and Add Rigidbody
         Rigidbody2D rigidbody = piece.AddComponent<Rigidbody2D>();
         rigidbody.velocity = origVelocity;
+        rigidbody.gravityScale = 0;
 
 
 

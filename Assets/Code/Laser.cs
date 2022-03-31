@@ -12,9 +12,12 @@ public class Laser : MonoBehaviour
     public GameObject StartVFX;
     public GameObject EndVFX;
     public GameObject Particles2;
+    public LayerMask IgnoreMe;
+    public LayerMask HitMe;
 
     private Quaternion rotation;
     private List<ParticleSystem> particles = new List<ParticleSystem>();
+    
 
     // Start is called before the first frame update
     void Start()
@@ -61,10 +64,15 @@ public class Laser : MonoBehaviour
 
         LineRenderer.SetPosition(1, mousePos);
 
+        int HitMask = 9;
+        //HitMask = ~HitMask;
+
+        int layerMask = 1 << 8;
 
         Vector2 direction = mousePos - (Vector2)transform.position;
-        RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position, direction.normalized, direction.magnitude);
+        RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position, direction.normalized, direction.magnitude, HitMask);
 
+        
         if (hit)
         {
             LineRenderer.SetPosition(1, hit.point);

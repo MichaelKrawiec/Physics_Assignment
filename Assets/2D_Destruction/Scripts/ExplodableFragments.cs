@@ -8,6 +8,7 @@ public class ExplodableFragments : ExplodableAddon{
         foreach (GameObject fragment in fragments)
         {
             fragment.tag = "Explodable";
+            fragment.layer = 9; 
             Explodable fragExp = fragment.AddComponent<Explodable>();
             fragment.AddComponent<ExplodeOnClick>();
 
