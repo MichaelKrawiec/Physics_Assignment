@@ -152,6 +152,8 @@ public static class SpriteExploder {
         Rigidbody2D rigidbody = piece.AddComponent<Rigidbody2D>();
         rigidbody.velocity = origVelocity;
         rigidbody.gravityScale = 0;
+        rigidbody.useAutoMass = true;
+        rigidbody.drag = 0.25f;
 
         
 
@@ -291,7 +293,8 @@ public static class SpriteExploder {
         Rigidbody2D rigidbody = piece.AddComponent<Rigidbody2D>();
         rigidbody.velocity = origVelocity;
         rigidbody.gravityScale = 0;
-
+        //rigidbody.useAutoMass = true;
+        rigidbody.drag = 0.25f;
 
 
         return piece;

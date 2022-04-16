@@ -7,6 +7,8 @@ TagManager:
   - Explodable
   - Laser
   - Firepoint
+  - sObjects
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -18,7 +20,7 @@ TagManager:
   - no post
   - player
   - Explode
-  - 
+  - Enemy
   - 
   - 
   - 
