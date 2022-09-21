@@ -31,9 +31,9 @@ public class ExplodeOnClick : MonoBehaviour
 		{
 			var mousePos = (Vector2)cam.ScreenToWorldPoint(Input.mousePosition);
 
-			int Hitmask = 1 << 9;
+			int hitmask = 1 << 9;
 
-			//layerMask = ~layerMask;
+			Hitmask = hitmask;
 
 
 			Vector2 direction = mousePos - (Vector2)Firepoint.transform.position;

@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Enemy_Controls : MonoBehaviour
 {
+
     public Transform player;
     public float moveSpeed = 5f;
     private Rigidbody2D rb;
     private Vector2 movement;
     public Vector3 MoveDirection;
+
 
     //public GameObject explosion;
 
@@ -39,6 +42,7 @@ public class Enemy_Controls : MonoBehaviour
         {
             currentState = EnemyState.IDLE;
         }
+
 
         onRangeChase = Vector3.Distance(transform.position, player.position) < rangeChase;
 

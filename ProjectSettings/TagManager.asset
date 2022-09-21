@@ -9,6 +9,7 @@ TagManager:
   - Firepoint
   - sObjects
   - Bullet
+  - Enemy
   layers:
   - Default
   - TransparentFX

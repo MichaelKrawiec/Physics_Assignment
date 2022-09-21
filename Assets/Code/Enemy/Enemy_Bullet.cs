@@ -8,7 +8,7 @@ public class Enemy_Bullet : MonoBehaviour
     public float timer;
     public Rigidbody2D rb;
     Ship_Steering Ship_Steering;
-    //public GameObject explosion;
+    public GameObject explosion;
 
 
     Ship_Steering target;
@@ -45,8 +45,8 @@ public class Enemy_Bullet : MonoBehaviour
 
         if (collision.gameObject.tag == "Player")
         {
-            //GameObject e = Instantiate(explosion) as GameObject; // Creates explosion on collision with player weapon
-            //e.transform.position = transform.position;
+            GameObject e = Instantiate(explosion) as GameObject; // Creates explosion on collision with player weapon
+            e.transform.position = transform.position;
             Destroy(gameObject); // Destroys bullet
         }
     }

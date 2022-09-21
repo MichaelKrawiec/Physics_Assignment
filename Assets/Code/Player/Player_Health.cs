@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class Player_Health : MonoBehaviour
 {
 
@@ -22,6 +22,12 @@ public class Player_Health : MonoBehaviour
         if (currentHealth < 0)
         {
             currentHealth = 0;
+        }
+
+        if(currentHealth <= 0)
+        {
+            print("GAME OVER!");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)

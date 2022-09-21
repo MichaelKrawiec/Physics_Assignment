@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 
 public class Laser : MonoBehaviour
 {
+    public static event Action LaserDamageScore = delegate { };
 
     public Camera cam;
     public LineRenderer LineRenderer;
@@ -13,8 +14,11 @@ public class Laser : MonoBehaviour
     public GameObject EndVFX;
     public GameObject Particles2;
     public GameObject LaserLight;
+    public GameObject explosion;
 
-    public LayerMask HitMask;
+
+    public LayerMask ExpMask;
+    public LayerMask ShipMask;
 
     private Quaternion rotation;
     private List<ParticleSystem> particles = new List<ParticleSystem>();
@@ -46,6 +50,7 @@ public class Laser : MonoBehaviour
             DisableLaser();
         }
 
+
         RotateToMouse();
     }
 
@@ -66,18 +71,33 @@ public class Laser : MonoBehaviour
 
         LineRenderer.SetPosition(1, mousePos);
 
-        int HitMask = 1 << 9;
-        //HitMask = ~HitMask;
+        //int HitMask = 1 << 9;
+       
+        //HitMask = hitMask;
 
         Vector2 direction = mousePos - (Vector2)transform.position;
-        RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position, direction.normalized, direction.magnitude, HitMask);
+        RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position, direction.normalized, direction.magnitude, ExpMask);
+        RaycastHit2D hit2 = Physics2D.Raycast((Vector2)transform.position, direction.normalized, direction.magnitude, ShipMask);
 
-        
         if (hit)
         {
+            GameObject e = Instantiate(explosion) as GameObject; // Creates explosion on collision with player weapon
+            e.transform.position = hit2.point;
             LineRenderer.SetPosition(1, hit.point);
             Particles2.SetActive(true);
         }
+        if (hit2)
+        {
+            GameObject e = Instantiate(explosion) as GameObject; // Creates explosion on collision with player weapon
+            e.transform.position = hit2.point;
+            LaserDamageScore();
+            Destroy(hit2.collider.gameObject);
+
+            LineRenderer.SetPosition(1, hit2.point);
+            Particles2.SetActive(true);
+        }
+
+
         else
         {
             Particles2.SetActive(false);
